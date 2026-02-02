@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Study Lab — Flashcards Matching Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Study Lab</h1>
+    <nav>
+      <button id="mode-flash" class="mode-btn" aria-pressed="true">Flashcards</button>
+      <button id="mode-match" class="mode-btn" aria-pressed="false">Matching</button>
+      <button id="mode-quiz" class="mode-btn" aria-pressed="false">Quiz</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <section id="controls" class="panel">
+      <label for="topic-select">Topic</label>
+      <select id="topic-select" aria-label="Choose topic"></select>
+
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty">
+        <option value="any">Any</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label for="quiz-count">Quiz Questions</label>
+      <input id="quiz-count" type="number" min="3" max="30" value="10" />
+
+      <button id="start-btn" class="primary">Start</button>
+      <button id="reset-progress">Reset Progress</button>
+    </section>
+
+    <section id="workspace" class="panel">
+      <!-- Flashcards -->
+      <div id="flash-area" class="mode-area" hidden>
+        <div id="card" tabindex="0" role="button" aria-label="Flashcard">
+          <div id="card-front" class="card-face"></div>
+          <div id="card-back" class="card-face"></div>
+        </div>
+        <div class="card-controls">
+          <button id="prev-card">Prev</button>
+          <button id="flip-card">Flip</button>
+          <button id="next-card">Next</button>
+          <button id="mark-known">Mark Known</button>
+        </div>
+      </div>
+
+      <!-- Matching -->
+      <div id="match-area" class="mode-area" hidden>
+        <div id="match-instructions" class="small">Drag items on the left to match items on the right.</div>
+        <div id="match-board" class="match-board" aria-live="polite"></div>
+        <div class="card-controls">
+          <button id="shuffle-match">Shuffle</button>
+          <button id="check-match">Check</button>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div id="quiz-area" class="mode-area" hidden>
+        <div id="quiz-header">
+          <div>Question <span id="q-index">1</span> / <span id="q-total">10</span></div>
+          <div>Score <span id="q-score">0</span></div>
+        </div>
+        <div id="question" class="question" tabindex="0"></div>
+        <div id="answers" class="answers" role="list"></div>
+        <div class="card-controls">
+          <button id="next-question" disabled>Next</button>
+          <button id="end-quiz">End Quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <aside id="sidebar" class="panel">
+      <h3>Progress</h3>
+      <div id="progress-list"></div>
+      <h3>Admin</h3>
+      <button id="open-admin">Open Editor</button>
+      <div id="admin" class="admin" hidden>
+        <textarea id="admin-json" rows="10" aria-label="Edit card JSON"></textarea>
+        <div class="small">Edit the JSON then click Save. Format validated.</div>
+        <button id="save-admin">Save</button>
+        <button id="cancel-admin">Cancel</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <small>Built for study: Mobile devices, Networking, Hardware, Virtualization, Troubleshooting</small>
+  </footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
